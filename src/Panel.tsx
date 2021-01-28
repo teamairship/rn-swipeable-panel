@@ -41,6 +41,7 @@ type SwipeablePanelProps = {
   barStyle?: object;
   allowTouchOutside?: boolean;
   scrollViewProps?: ScrollViewProps;
+  footerComponent?: () => void;
 };
 
 type MaybeAnimated<T> = T | Animated.Value;
@@ -269,6 +270,7 @@ class SwipeablePanel extends Component<SwipeablePanelProps, SwipeablePanelState>
               this.props.children
             )}
           </ScrollView>
+          {(typeof this.props.footerComponent === 'function') && this.props.footerComponent()}
         </Animated.View>
       </Animated.View>
     ) : null;
