@@ -42,6 +42,7 @@ type SwipeablePanelProps = {
   allowTouchOutside?: boolean;
   scrollViewProps?: ScrollViewProps;
   footerComponent?: () => void;
+  headerComponent?: () => void;
 };
 
 type MaybeAnimated<T> = T | Animated.Value;
@@ -252,6 +253,7 @@ class SwipeablePanel extends Component<SwipeablePanelProps, SwipeablePanelState>
           {this.props.showCloseButton && (
             <Close rootStyle={closeRootStyle} iconStyle={closeIconStyle} onPress={this.props.onClose} />
           )}
+          {(typeof this.props.headerComponent === 'function') && this.props.headerComponent()}
           <ScrollView
             onTouchStart={() => {
               return false;
